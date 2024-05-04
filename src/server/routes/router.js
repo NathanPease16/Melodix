@@ -27,6 +27,7 @@ route.get('/quiz', (req, res) => {
 });
 
 route.get('/auth/login', (req, res) => {
+    console.log(req);
     const queryParameters = spotifyApi.getAuthQueryParamaters(`${req.protocol}://${req.headers.host}`);
     res.render('login', { href: `https://accounts.spotify.com/authorize/?${queryParameters.toString()}`});
 });

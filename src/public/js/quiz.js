@@ -20,6 +20,8 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         getOAuthToken: cb => { cb(token); },
     });
 
+    player.activateElement();
+
     player.addListener('ready', ({ device_id }) => {
         loading.style.display = 'none';
         content.style.display = '';

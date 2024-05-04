@@ -79,14 +79,24 @@ async function generateQuestion(deviceId) {
     playSong(deviceId, song.uri);
 }
 
-function playSong(deviceId, uri) {
-    fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+async function playSong(deviceId, uri) {
+    const p = document.createElement('p');
+    p.textContent = 'fetching...';
+    document.body.appendChild(p);
+    
+    const response = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
         method: 'PUT',
         headers: {
             'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ uris: [uri]}),
     });
+
+    if (response.ok) {
+        p.textContent = '' + token;
+    } else {
+        p.textContent = '' + response;
+    }
 }
 
 /*

@@ -4,6 +4,8 @@ const client_secret = process.env.CLIENT_SECRET;
 function getAuthQueryParamaters(host) {
     const scope = "streaming user-read-email user-read-private playlist-read-private";
 
+    console.log(`${host}/auth/callback`);
+
     const authQueryParameters = new URLSearchParams({
         response_type: 'code',
         client_id,

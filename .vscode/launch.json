@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Node Server",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "start"],
+        "outputCapture": "std"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Run No Reload",
+        "runtimeExecutable": "node",
+        "runtimeArgs": ["src/app.js"],
+        "outputCapture": "std"
+      }
+    ]
+  }
+  

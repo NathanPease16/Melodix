@@ -1,0 +1,99 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    flex-direction: column;
+    margin: 1vw;
+    padding: 1vw;
+    border-radius: .25vw;
+    box-shadow: 0 0 .25vw .25vw lightgray;
+}
+
+.input-field {
+    border-radius: .25vw;
+    width: 25vw;
+    border: .2vw solid darkgray;
+    outline: none;
+    padding: .5vw;
+    font-size: 1.5vw;
+    color: #252525;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.text {
+    color: #252525;
+    font-size: 1.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.small-text {
+    color: #252525;
+    font-size: .75vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wrap {
+    overflow-wrap: break-word;
+}
+
+.green {
+    color: #1e9400;
+}
+
+.red {
+    color: #940a00;
+}
+
+.button {
+    width: 25vw;
+    outline: none;
+    border: none;
+    border-radius: .25vw;
+    font-size: 1.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: .5vw;
+    margin: .5vw;
+    color: #252525;
+    background-color: #8dd1ff;
+    transition: background-color 250ms;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover {
+    background-color: #6da2c5;
+}
+
+.album {
+    display: flex;
+    align-items: center;
+}
+
+.album input {
+    width: 2vw;
+    height: 2vw;
+    margin-right: .5vw;
+}
+
+.album img {
+    width: 3vw;
+    height: 3vw;
+    margin-right: .25vw;
+}
+
+.album p {
+    font-size: 1.5vw;
+    color: #252525;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

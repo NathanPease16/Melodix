@@ -3,38 +3,48 @@ const route = express.Router();
 const spotifyApi = require('../scripts/spotify-api');
 
 route.get('/', (req, res) => {
-    res.render('index.ejs');
-});
-
-route.get('/songs/:albumId', async (req, res) => {
-    const albumId = req.params.albumId;
-
-    const accessToken = await spotifyApi.getAccessToken();
-    const songs = await spotifyApi.getAlbumSongs(albumId, accessToken.access_token);
-
-    res.send(songs.map(song => ({ name: song.name, url: song.preview_url }))).end();
-});
-
-route.get('/artists/:search', async (req, res) => {
-    const artistSearch = req.params.search;
-
-    const accessToken = await spotifyApi.getAccessToken();
-    const artists = await spotifyApi.searchArtists(artistSearch, accessToken.access_token);
-
-    if (artists.length > 0) {
-        res.send({ name: artists[0].name, id: artists[0].id }).end();
+    if (!req.cookies.accessToken) {
+        res.redirect('/auth/login');
     } else {
-        res.send({}).end();
+        res.render('index');
     }
 });
 
-route.get('/albums/:artist', async (req, res) => {
-    const artistId = req.params.artist;
+route.get('/artist', (req, res) => {
+    if (!req.cookies.accessToken) {
+        res.redirect('/auth/login');
+    } else {
+        res.render('artist');
+    }
+});
 
-    const accessToken = await spotifyApi.getAccessToken();
-    const albums = await spotifyApi.getArtistAlbums(artistId, accessToken.access_token); 
+route.get('/quiz', (req, res) => {
+    if (!req.cookies.accessToken) {
+        res.redirect('/auth/login');
+    } else {
+        res.render('quiz');
+    }
+});
 
-    res.send(albums.filter(album => album.album_group != 'appears_on').map(album => ({ name: album.name, image: album.images[0].url, id: album.id }))).end();
+route.get('/auth/login', (req, res) => {
+    const queryParameters = spotifyApi.getAuthQueryParamaters(`${req.protocol}://${req.headers.host}`);
+    res.render('login', { href: `https://accounts.spotify.com/authorize/?${queryParameters.toString()}`});
+});
+
+route.get('/auth/callback', async (req, res) => {
+    const code = req.query.code;
+
+    const authOptions = spotifyApi.getAuthOptions(code, `${req.protocol}://${req.headers.host}`);
+
+    const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
+
+    if (response.ok) {
+        const tokenData = await response.json();
+        res.cookie('accessToken', tokenData.access_token);
+        res.redirect('/');
+    } else {
+        res.redirect('/auth/login');
+    }
 });
 
 module.exports = route;

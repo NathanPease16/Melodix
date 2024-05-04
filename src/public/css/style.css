@@ -1,3 +1,28 @@
+@import "cards.css";
+@import "dropdown.css";
+@import "infoCard.css";
+@import "loading.css";
+
+div, p, button, a, input, body, html {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --dark-gray: #1f1f1f;
+    --translucent-black: #1f1f1f7c;
+
+    --small-space: .5vw;
+    --medium-space: 1vw;
+    --large-space: 2vw;
+
+    --small-font: .5vw;
+    --medium-font: 1vw;
+    --large-font: 2vw;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -5,6 +30,7 @@
 
 .container {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     width: 30vw;
@@ -13,6 +39,14 @@
     padding: 1vw;
     border-radius: .25vw;
     box-shadow: 0 0 .25vw .25vw lightgray;
+}
+
+.container-capped {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .input-field {

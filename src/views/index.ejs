@@ -1,70 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./img/Melodix_1024.png">
-    <title>Melodix</title>
-    
-</head>
+<%- include ('./templates/_header.ejs'); %>
 <body>
-    <div class="center">
-        <div id="artist-select" class="container">
-            <p class="text">Select Artist</p>
-            <input type="text" id="artist" class="input-field">
-            <p id="artist-text" class="text">Artist: </p>
-            <button id="submit-artist" class="button">Submit</button>
-        </div>
-    </div>
-
-    <div class="center">
-        <div id="album-select" style="display:none;" class="container">
-            <p class="text">Select Albums*</p>
-            <p class="small-text wrap">*Due to current technical limitations, only up to 50 albums can be added and only songs with previews can be played. This will likely be updated in the future</p>
-            <div id="albums"></div>
-            <button id="submit-albums" class="button">Submit</button>
-        </div>
-    </div>
-
-    <div class="center">
-        <div class="container" id="start-container" style="display:none;">
-            <button class="button" id="start">Start Quiz</button>
-        </div>
-    </div>
-
-    <div class="center">
-        <div class="container" id="questions-container" style="display:none;">
-            <p class="text">What song is currently playing?</p>
-            <div id="answers" class="answers"></div>
-        </div>
-    </div>
-
-    <div class="center">
-        <div class="container" id="correct" style="display:none;">
-            <p class="text green">Correct!</p>
-        </div>
-    </div>
-
-    <div class="center">
-        <div class="container" id="incorrect" style="display:none;">
-            <p class="text red">Incorrect :(</p>
-            <p class="text wrap" id="correct-answer">Correct Answer: </p>
-        </div>
-    </div>
-    
-    <script src="./js/album.js"></script>
-    <script src="./js/artist.js"></script>
-    <script src="./js/quiz.js"></script>
-    <script src="./js/songFetcher.js"></script>
-    <!--
-    <button id="start">Start Quiz</button>
-    <div class="quiz-container" id="quiz" style="display:none;">
-        <p>What song is playing?</p>
-        <div id="answers"></div>
-    </div>
-    <script src="./js/songFetcher.js"></script>
-    <script src="./js/quiz.js"></script>
--->
+    <p></p>
+    <a href="/artist" class="card">Artist</a>
+    <a href="" class="card">Playlist</a>
+    <script>
+        sessionStorage.clear();
+    </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const path = require('path');
 
@@ -16,8 +17,10 @@ app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/img', express.static(path.join(__dirname, 'public', 'img')));
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use(require('./server/routes/router.js'));
+app.use(require('./server/routes/spotifyRouter.js'));
 
 app.listen(PORT, (error) => {
     if (error) {

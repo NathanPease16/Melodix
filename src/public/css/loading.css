@@ -1,0 +1,21 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading img {
+    width: 25vw;
+    height: 25vw;
+}
+
+.loading p {
+    color: var(--dark-gray);
+    font-size: var(--large-font);
+}
+
+.loading a {
+    color: rgb(46, 184, 254);
+    font-size: var(--small-font);
+}

@@ -1,0 +1,17 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    top: 3.3vw;
+    position: absolute;
+    width: 25.4vw;
+    border-radius: .5vw;
+    padding: var(--small-space);
+    background-color: white;
+    box-shadow: 0 0 .25vw .25vw lightgray;
+    z-index: 100;
+}
+
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+}

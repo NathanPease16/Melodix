@@ -1,0 +1,32 @@
+<%- include ('./templates/_header.ejs'); %>
+<body>
+    <div id="content">
+        <div class=center>
+            <div class="container">
+                <p class="text">Search for an artist</p>
+                <div class="input-wrapper">
+                    <input type="text" id="artist-search" class="input-field" placeholder="Artist...">
+                    <div class="dropdown" id="dropdown" style="display:none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <div class="container">
+                <p class="text">Albums (click to exclude)</p>
+                <div id="album-container" class="container-capped"></div>
+                <button class="button" id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading" style="display:none;">
+        <img src="./img/loading.svg" alt="">
+        <p>Downloading song data...</p>
+        <p>This should only take a moment</p>
+        <a href="https://loading.io/icon/">Provided by loading.io</a>
+    </div>
+    <script src="./js/artist/albums.js"></script>
+    <script src="./js/artist/artist.js"></script>
+</body>
+</html>

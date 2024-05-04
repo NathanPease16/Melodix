@@ -1,0 +1,42 @@
+<%- include ('./templates/_header.ejs'); %>
+<body>
+    <div id="loading" class="loading">
+        <img src="./img/connecting.svg" alt="">
+        <p>Connecting to Spotify Player SDK...</p>
+        <p>This should only take a moment</p>
+        <a href="https://loading.io/icon/">Provided by loading.io</a>
+    </div>
+
+    <div id="content" style="display:none;">
+        <div class="center">
+            <div class="container" id="start-container">
+                <button class="button" id="start">Start Quiz</button>
+            </div>
+        </div>
+
+        <div class="center">
+            <div class="container" id="questions-container" style="display:none;">
+                <p class="text">What song is currently playing?</p>
+                <div id="answers" class="answers"></div>
+            </div>
+        </div>
+
+        <div class="center">
+            <div class="container" id="correct" style="display:none;">
+                <p class="text green">Correct!</p>
+            </div>
+        </div>
+
+        <div class="center">
+            <div class="container" id="incorrect" style="display:none;">
+                <p class="text red">Incorrect :(</p>
+                <p class="text wrap" id="correct-answer">Correct Answer: </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="./js/songFetcher.js"></script>
+    <script src="./js/quiz.js"></script>
+</body>
+</html>

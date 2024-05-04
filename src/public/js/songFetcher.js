@@ -1,5 +1,4 @@
-const button = document.getElementById('btn');
-
+const songs = JSON.parse(sessionStorage.getItem('songs'));
 let selectedSongs = [];
 
 async function getRandomSong() {
@@ -13,7 +12,6 @@ async function getRandomSong() {
     }
     selectedSongs.push(songs[index]);
     return songs[index];
-    // return songs[Math.floor(Math.random() * songs.length)];
 }
 
 async function getAnswerChoices(numberOfChoices, correctAnswer) {
@@ -27,7 +25,7 @@ async function getAnswerChoices(numberOfChoices, correctAnswer) {
         }
 
         let index = Math.floor(Math.random() * songs.length);
-        while (songs[index].url === correctAnswer.url || answers.includes(songs[index])) {
+        while (songs[index].uri === correctAnswer.uri || answers.includes(songs[index])) {
             index = Math.floor(Math.random() * songs.length);
         }
 
@@ -36,28 +34,3 @@ async function getAnswerChoices(numberOfChoices, correctAnswer) {
 
     return answers;
 }
-
-/*
-(async () => {
-    const response = await fetch('/songs/7gW0r5CkdEUMm42w9XpyZO', {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-    const songs = (await response.json()).filter(song => song.url !== null);
-    const audio = new Audio();
-    
-    button.addEventListener('click', async () => {
-        audio.pause();
-
-        const song = songs[Math.floor(Math.random() * songs.length)];
-        audio.src = song.url;
-        audio.load();
-
-        audio.play();
-
-        console.log(song.name);
-    });
-})();
-*/

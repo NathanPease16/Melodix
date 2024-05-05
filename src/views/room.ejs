@@ -1,0 +1,93 @@
+<%- include ('./templates/_header.ejs'); %>
+<body>
+    <div class="room-content">
+
+        <div id="waiting">
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">Current room:</p>
+                    <p class="large-host-text" id="room-code">XXXXXXXX</p>
+                </div>
+            </div>
+            <div class="loading">
+                <img src="/img/spinning.svg" alt="">
+                <p>Waiting for host to start...<p>
+                <a href="https://loading.io/icon/">Provided by loading.io</a>
+            </div>
+        </div>
+
+        <div id="question-loading" style="display:none;">
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">Ready?</p>
+                </div>
+            </div>
+            <div class="loading">
+                <img src="/img/spinning.svg" alt="">
+                <p id="question-loading-text"><p>
+                <a href="https://loading.io/icon/">Provided by loading.io</a>
+            </div>
+        </div>
+
+        <div id="answers" style="display:none;">
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">What song is currently playing?</p>
+                </div>
+            </div>
+            <div class="room-button-container" id="answer-buttons">
+                <div class="room-buttons">
+                    <div class="room-button red" id="0">
+                        <img src="/img/block.svg" alt="">
+                    </div>
+                    <div class="room-button orange" id="1">
+                        <img src="/img/ball.svg" alt="">
+                    </div>
+                    <div class="room-button green" id="2">
+                        <img src="/img/infinity.svg" alt="">
+                    </div>
+                    <div class="room-button purple" id="3">
+                        <img src="/img/pulse.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="question-submit" style="display:none;">
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">Answer Submitted</p>
+                </div>
+            </div>
+            <div id="loading" class="loading">
+                <img src="/img/spinning.svg" alt="">
+                <p>Are you right?<p>
+                <a href="https://loading.io/icon/">Provided by loading.io</a>
+            </div>
+        </div>
+
+        <div id="correct" class="full" style="display:none;">
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">Awesome!</p>
+                </div>
+            </div>
+            <div class="correct"></div>
+        </div>
+
+        <div id="incorrect" class="full" style="display:none;">
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">Better luck next time :(</p>
+                </div>
+            </div>
+            <div class="incorrect"></div>
+        </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/questionLoading/loading.js"></script>
+    <script src="/js/player/sync.js"></script>
+</body>
+</html>

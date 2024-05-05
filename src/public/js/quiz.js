@@ -27,6 +27,8 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         loading.style.display = '';
         content.style.display = 'none';
 
+        player.activateElement();
+
         player.addListener('ready', ({ device_id }) => {
             loading.style.display = 'none';
             content.style.display = '';
@@ -96,10 +98,12 @@ async function playSong(deviceId, uri) {
         body: JSON.stringify({ uris: [uri]}),
     });
 
+    player.resume();
+
     if (response.ok) {
         p.textContent = '' + token;
     } else {
-        p.textContent = '' + response;
+        p.textContent = JSON.stringify(response);
     }
 }
 

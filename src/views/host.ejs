@@ -1,11 +1,15 @@
 <%- include ('./templates/_header.ejs'); %>
 <body>
-    <div class="center">
+    <div class="host-content">
         <div class="host-header">
             <p class="host-text">Join at <b>melodix.onrender.com/join</b>  with the game pin:</p>
-            <p class="large-host-text" id="room-code">asdf</p>
+            <p class="large-host-text" id="room-code">XXXXXXXX</p>
+        </div>
+        <div class="players" id="players">
+            
         </div>
     </div>
-   <script src="/js/host/roomManager.js"></script> 
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/host/roomManager.js"></script> 
 </body>
 </html>

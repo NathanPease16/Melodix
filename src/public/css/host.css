@@ -1,3 +1,8 @@
+.host-content {
+    display: flex;
+    flex-direction: column;
+}
+
 .host-header {
     flex-direction: column;
     text-align: center;
@@ -14,4 +19,19 @@
 .large-host-text {
     font-size: var(--xtra-large-font);
     font-weight: bold;
+}
+
+.players {
+    display: grid;
+    padding: var(--large-space);
+    grid-template-columns: repeat(4, 1fr);
+    overflow-y: auto;
+    row-gap: calc(var(--large-space) * 4);
+}
+
+.players p {
+    display: flex;
+    justify-self: center;
+    font-size: var(--large-font);
+    color: var(--blue);
 }

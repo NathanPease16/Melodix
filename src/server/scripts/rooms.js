@@ -9,7 +9,7 @@ function generateRoom(length) {
         code += validCharacters[Math.floor(Math.random() * validCharacters.length)];
     }
 
-    const room = { code, locked: false };
+    const room = { code, players: [], locked: false };
     activeRooms.push(room);
 
     return room;
@@ -23,6 +23,34 @@ function getRoom(roomCode) {
     }
 
     return undefined;
+}
+
+function roomIsJoinable(roomCode) {
+    const room = getRoom(roomCode);
+
+    return !(!room || room.locked);
+}
+
+function addPlayer(roomCode, player) {
+    const room = getRoom(roomCode);
+
+    if (!room) {
+        return;
+    }
+
+    room.players.push(player);
+}
+
+function removePlayer(roomCode, player) {
+    const room = getRoom(roomCode);
+
+    if (!room) {
+        return;
+    }
+
+    if (room.players.includes(player)) {
+        room.players.splice(room.players.indexOf(player), 1);
+    }
 }
 
 function lockRoom(roomCode) {
@@ -46,6 +74,10 @@ function removeRoom(roomCode) {
 module.exports = {
     generateRoom,
     getRoom,
+    roomIsJoinable,
+    addPlayer,
+    removePlayer,
     lockRoom,
     removeRoom,
+    activeRooms,
 }

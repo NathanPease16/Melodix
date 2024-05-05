@@ -4,7 +4,7 @@ async function processUserTokenAccess(req, res, next) {
     const accessToken = req.cookies.accessToken;
     const refreshToken = req.cookies.refreshToken;
 
-    if (!accessToken && !refreshToken && req.url !== '/auth/login' && !req.url.startsWith('/auth/callback')) {
+    if (!accessToken && !refreshToken && req.url.startsWith('/host')) {
         res.redirect('/auth/login');
         return;
     } else if (refreshToken && !accessToken) {

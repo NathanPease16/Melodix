@@ -7,6 +7,8 @@ const path = require('path');
 const app = express();
 const PORT = 8080;
 
+const server = require('./server/routes/sockets').establishSockets(app);
+
 dotenv.config({ path: '.env' });
 
 app.set('view engine', 'ejs');
@@ -26,7 +28,7 @@ app.use(require('./server/routes/authRouter.js'));
 app.use(require('./server/routes/spotifyRouter.js'));
 app.use(require('./server/routes/roomRouter.js'));
 
-app.listen(PORT, (error) => {
+server.listen(PORT, (error) => {
     if (error) {
         console.log(err);
     } else {

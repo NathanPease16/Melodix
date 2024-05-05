@@ -41,4 +41,39 @@ route.get('/songs/:albumId', async (req, res) => {
     res.send(songs.map(song => ({ name: song.name, uri: song.uri }))).end();
 });
 
+route.get('/playlists/:search', async (req, res) => {
+    const playlist = req.params.search;
+
+    const playlists = await spotifyApi.searchPlaylists(playlist, req.cookies.accessToken);
+    console.log(playlists);
+
+    res.send(playlists.map(playlist => ({ name: playlist.name, id: playlist.id, src: playlist.images[0].url }))).end();
+});
+
+route.get('/playlistId/:id', async (req, res) => {
+    const id = req.params.id;
+
+    const playlist = await spotifyApi.getPlaylistById(id, req.cookies.accessToken);
+
+    if (!playlist.error) {
+        res.send({ name: playlist.name, id: playlist.id, src: playlist.images[0].url }).end();
+    } else {
+        res.send({}).end();
+    }
+});
+
+route.get('/playlistSongs/:id', async (req, res) => {
+    const id = req.params.id;
+
+    // const playlist = await spotifyApi.getPlaylistById(id, req.cookies.accessToken);
+    const tracks = await spotifyApi.getPlaylistSongs(id, req.cookies.accessToken);
+
+    if (!tracks.error) {
+        res.send(tracks.map(track => ({ name: track.name, uri: track.uri }) ));
+        // res.send({ songs: playlist.tracks.items.map((track) => ({ name: track.track.name, uri: track.track.uri })) }).end();
+    } else {
+        res.send({}).end();
+    }
+});
+
 module.exports = route;

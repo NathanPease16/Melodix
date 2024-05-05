@@ -4,8 +4,6 @@ const client_secret = process.env.CLIENT_SECRET;
 function getAuthQueryParamaters(host) {
     const scope = "streaming user-read-email user-read-private playlist-read-private";
 
-    console.log(`${host}/auth/callback`);
-
     const authQueryParameters = new URLSearchParams({
         response_type: 'code',
         client_id,
@@ -17,7 +15,19 @@ function getAuthQueryParamaters(host) {
     return authQueryParameters;
 }
 
-function getAuthOptions(code, host) {
+function getAuthOptions(code, host, refreshToken = null) {
+    const bodyParams = {
+        redirect_uri: `${host}/auth/callback`,
+        grant_type: refreshToken ? 'refresh_token' : 'authorization_code',
+    };
+
+    if (refreshToken) {
+        bodyParams.refresh_token = refreshToken;
+    } else {
+        bodyParams.code = code;
+    }
+    
+    /*
     const authOptions = {
         method: 'POST',
         headers: {
@@ -30,6 +40,16 @@ function getAuthOptions(code, host) {
             grant_type: 'authorization_code',
         }),
    }
+   */
+
+    const authOptions = {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64')),
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(bodyParams),
+    }
 
     return authOptions;
 }

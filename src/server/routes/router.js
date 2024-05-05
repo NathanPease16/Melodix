@@ -3,31 +3,18 @@ const route = express.Router();
 const spotifyApi = require('../scripts/spotify-api');
 
 route.get('/', (req, res) => {
-    if (!req.cookies.accessToken) {
-        res.redirect('/auth/login');
-    } else {
-        res.render('index');
-    }
+    res.render('index');
 });
 
 route.get('/artist', (req, res) => {
-    if (!req.cookies.accessToken) {
-        res.redirect('/auth/login');
-    } else {
-        res.render('artist');
-    }
+    res.render('artist');
 });
 
 route.get('/quiz', (req, res) => {
-    if (!req.cookies.accessToken) {
-        res.redirect('/auth/login');
-    } else {
-        res.render('quiz');
-    }
+    res.render('quiz');
 });
 
 route.get('/auth/login', (req, res) => {
-    console.log(req);
     const queryParameters = spotifyApi.getAuthQueryParamaters(`${req.protocol}://${req.headers.host}`);
     res.render('login', { href: `https://accounts.spotify.com/authorize/?${queryParameters.toString()}`});
 });
@@ -41,7 +28,8 @@ route.get('/auth/callback', async (req, res) => {
 
     if (response.ok) {
         const tokenData = await response.json();
-        res.cookie('accessToken', tokenData.access_token);
+        res.cookie('accessToken', tokenData.access_token, { mageAxe: 45 * 60 * 1000 });
+        res.cookie('refreshToken', tokenData.refresh_token, { mageAxe: 30 * 24 * 60 * 60 * 1000 });
         res.redirect('/');
     } else {
         res.redirect('/auth/login');

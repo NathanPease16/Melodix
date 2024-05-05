@@ -38,7 +38,33 @@ function addPlayer(roomCode, player) {
         return;
     }
 
-    room.players.push(player);
+    room.players.push( {name: player, choice: -1 } );
+}
+
+function updatePlayerChoice(roomCode, player, choice) {
+    const room = getRoom(roomCode);
+
+    if (!room) {
+        return;
+    }
+
+    for (const p of room.players) {
+        if (p.name === player) {
+            p.choice = choice;
+        }
+    }
+}
+
+function resetPlayerChoices(roomCode) {
+    const room = getRoom(roomCode);
+
+    if (!room) {
+        return;
+    }
+
+    for (const player of room.players) {
+        player.choice = -1;
+    }
 }
 
 function removePlayer(roomCode, player) {
@@ -48,8 +74,11 @@ function removePlayer(roomCode, player) {
         return;
     }
 
-    if (room.players.includes(player)) {
-        room.players.splice(room.players.indexOf(player), 1);
+    for (let i = 0; i < room.players.length; i++) {
+        if (room.players[i].name === player) {
+            room.players.splice(i, 1);
+            return;
+        }
     }
 }
 
@@ -77,6 +106,8 @@ module.exports = {
     roomIsJoinable,
     addPlayer,
     removePlayer,
+    updatePlayerChoice,
+    resetPlayerChoices,
     lockRoom,
     removeRoom,
     activeRooms,

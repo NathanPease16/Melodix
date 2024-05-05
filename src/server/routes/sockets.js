@@ -34,6 +34,62 @@ function establishSockets(app) {
             }
         });
 
+        socket.on('loading', () => {
+            if (socket.room.userType === 'host') {
+                io.of('/').sockets.forEach(clientSocket => {
+                    if (clientSocket.room.code === socket.room.code) {
+                        clientSocket.emit('loading');
+                    }
+                });
+            }
+        });
+
+        socket.on('question', () => {
+            if (socket.room.userType === 'host') {
+                io.of('/').sockets.forEach(clientSocket => {
+                    if (clientSocket.room.code === socket.room.code) {
+                        clientSocket.emit('question');
+                    }
+                });
+            }
+        });
+
+        socket.on('submitQuestion', (choice) => {
+            rooms.updatePlayerChoice(socket.room.code, socket.room.name, choice);
+            const room = rooms.getRoom(socket.room.code);
+            
+            let allSelected = true;
+            for (const player of room.players) {
+                if (player.choice === -1) {
+                    allSelected = false;
+                    break;
+                }
+            }
+
+            if (allSelected) {
+                let host;
+                io.of('/').sockets.forEach(clientSocket => {
+                    if (clientSocket.room.code === socket.room.code && clientSocket.room.userType === 'host') {
+                        host = clientSocket;
+                    }
+                });
+
+                if (host) {
+                    host.emit('finishQuestion', room.players);
+                }
+
+                rooms.resetPlayerChoices(socket.room.code);
+            }
+        });
+
+        socket.on('answerRevealed', (correctChoice) => {
+            io.of('/').sockets.forEach(clientSocket => {
+                if (clientSocket.room.code === socket.room.code) {
+                    clientSocket.emit('answerRevealed', correctChoice);
+                }
+            });
+        });
+
         socket.on('disconnect', (reason) => {
             if (socket.room.userType === 'host') {
                 rooms.removeRoom(socket.room.code);

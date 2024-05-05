@@ -35,5 +35,5 @@ async function getAndDisplaySongs(playlistId) {
 submitButton.addEventListener('click', async () => {
     sessionStorage.setItem('songs', JSON.stringify(songs));
 
-    window.location = '/quiz';
+    window.location = '/host';
 });

@@ -5,8 +5,10 @@ const players = [];
 
 const socket = io();
 
+let roomCode;
+
 (async () => {
-    const roomCode = await (await fetch('/roomCode')).text();
+    roomCode = await (await fetch('/roomCode')).text();
     roomCodeText.textContent = roomCode;
 
     socket.emit('joinRoom', { code: roomCode });
@@ -17,7 +19,7 @@ socket.on('playerJoin', (player) => {
     playerText.textContent = player;
 
     playerDiv.appendChild(playerText);
-    players.push(player);
+    players.push({ name: player, score: 0 });
 });
 
 socket.on('playerLeave', (player) => {
@@ -27,7 +29,9 @@ socket.on('playerLeave', (player) => {
         }
     }
 
-    if (players.includes(player)) {
-        players.splice(players.indexOf(player), 1);
+    for (let i = 0; i < players.length; i++) {
+        if (players[i].name === player) {
+            players.splice(i, 1);
+        }
     }
 });

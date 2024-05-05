@@ -1,14 +1,69 @@
 <%- include ('./templates/_header.ejs'); %>
 <body>
-    <div class="host-content">
+    <div class="host-content" id="lobby">
         <div class="host-header">
             <p class="host-text">Join at <b>melodix.onrender.com/join</b>  with the game pin:</p>
             <p class="large-host-text" id="room-code">XXXXXXXX</p>
-            <button class="host-button">Start</button>
+            <button class="host-button" id="start">Start</button>
         </div>
         <div class="players" id="players"></div>
     </div>
+
+    <div class="host-content-center" id="question-loading" style="display:none;">
+        <div>
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">Ready?</p>
+                </div>
+            </div>
+            <div id="loading" class="loading">
+                <img src="/img/spinning.svg" alt="">
+                <p id="question-loading-text"><p>
+                <a href="https://loading.io/icon/">Provided by loading.io</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="host-content-center" id="leaderboard" style="display:none;">
+        <div>
+            <div class="center">
+                <div class="host-header">
+                    <p class="host-text">Standings</p>
+                </div>
+            </div>
+            <div class="center">
+                <div class="standings" id="standings"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="host-content-center" id="question" style="display:none;">
+        <div class="host-header">
+            <p class="large-host-text">What song is currently playing?</p>
+        </div>
+        <div class="room-button-container">
+            <div class="room-buttons">
+                <div class="room-button red" id="0-d">
+                    <p id="0"></p>
+                </div>
+                <div class="room-button orange" id="1-d">
+                    <p id="1"></p>
+                </div>
+                <div class="room-button green" id="2-d">
+                    <p id="2"></p>
+                </div>
+                <div class="room-button purple" id="3-d">
+                    <p id="3"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/host/roomManager.js"></script> 
+    <script src="/js/questionLoading/loading.js"></script>
+    <script src="/js/host/roomManager.js"></script>
+    <script src="/js/songFetcher.js"></script>
+    <script src="/js/host/gameManager.js"></script>
 </body>
 </html>

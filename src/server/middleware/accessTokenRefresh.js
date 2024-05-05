@@ -5,7 +5,6 @@ async function processUserTokenAccess(req, res, next) {
     const refreshToken = req.cookies.refreshToken;
 
     if (!accessToken && !refreshToken && req.url !== '/auth/login' && !req.url.startsWith('/auth/callback')) {
-        console.log(req.url);
         res.redirect('/auth/login');
         return;
     } else if (refreshToken && !accessToken) {
@@ -13,7 +12,9 @@ async function processUserTokenAccess(req, res, next) {
         const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
         const data = await response.json();
 
-        res.cookie('accessToken', data.access_token, { mageAxe: 45 * 60 * 1000 });
+        console.log(data);
+
+        res.cookie('accessToken', data.access_token, { maxAge: 45 * 60 * 1000 });
     }
 
     next();

@@ -2,7 +2,7 @@ const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 
 function getAuthQueryParamaters(host) {
-    const scope = "streaming user-read-email user-read-private playlist-read-private";
+    const scope = "streaming user-read-email user-read-private playlist-read-private user-modify-playback-state";
 
     const authQueryParameters = new URLSearchParams({
         response_type: 'code',

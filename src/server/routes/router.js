@@ -9,6 +9,10 @@ route.get('/artist', (req, res) => {
     res.render('artist');
 });
 
+route.get('/playlist', (req, res) => {
+    res.render('playlist');
+});
+
 route.get('/quiz', (req, res) => {
     res.render('quiz');
 });

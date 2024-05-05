@@ -24,6 +24,7 @@ app.use(require('./server/middleware/accessTokenRefresh.js'));
 app.use(require('./server/routes/router.js'));
 app.use(require('./server/routes/authRouter.js'));
 app.use(require('./server/routes/spotifyRouter.js'));
+app.use(require('./server/routes/roomRouter.js'));
 
 app.listen(PORT, (error) => {
     if (error) {

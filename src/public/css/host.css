@@ -1,0 +1,17 @@
+.host-header {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--medium-space);
+    background-color: var(--blue);
+    color: white;
+    width: 100vw;
+}
+
+.host-text {
+    font-size: var(--large-font);
+}
+
+.large-host-text {
+    font-size: var(--xtra-large-font);
+    font-weight: bold;
+}

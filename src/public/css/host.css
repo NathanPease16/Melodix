@@ -10,6 +10,25 @@
     background-color: var(--blue);
     color: white;
     width: 100vw;
+    box-shadow: 0 0 .25vw .25vw var(--translucent-black);
+}
+
+.host-button {
+    width: 25vw;
+    outline: none;
+    border: none;
+    border-radius: .25vw;
+    font-size: 1.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: .5vw;
+    margin: .5vw;
+    color: white;
+    background-color: var(--blue);
+    transition: background-color 250ms;
+}
+
+.host-button:hover {
+    background-color: var(--dark-blue);
 }
 
 .host-text {
@@ -25,7 +44,6 @@
     display: grid;
     padding: var(--large-space);
     grid-template-columns: repeat(4, 1fr);
-    overflow-y: auto;
     row-gap: calc(var(--large-space) * 4);
 }
 

@@ -14,26 +14,30 @@ const correctAnswerText = document.getElementById('correct-answer');
 const cookies = Object.fromEntries(document.cookie.split(';').map(cookie => cookie.split('=')));
 const token = cookies.accessToken;
 
+loading.style.display = 'none';
+content.style.display = '';
+
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const player = new Spotify.Player({
-        name: 'Web Playback SDK Quick Start Player',
-        getOAuthToken: cb => { cb(token); },
-    });
+    startButton.addEventListener('click', () => {
+        const player = new Spotify.Player({
+            name: 'Web Playback SDK Quick Start Player',
+            getOAuthToken: cb => { cb(token); }
+        });
 
-    player.activateElement();
+        loading.style.display = '';
+        content.style.display = 'none';
 
-    player.addListener('ready', ({ device_id }) => {
-        loading.style.display = 'none';
-        content.style.display = '';
+        player.addListener('ready', ({ device_id }) => {
+            loading.style.display = 'none';
+            content.style.display = '';
 
-        startButton.addEventListener('click', () => {
             questionsContainer.style.display = '';
             startContainer.style.display = 'none';
             generateQuestion(device_id);
         });
-    });
 
-    player.connect();
+        player.connect();
+    });
 }
 
 async function generateQuestion(deviceId) {

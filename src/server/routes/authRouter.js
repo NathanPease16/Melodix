@@ -16,8 +16,8 @@ route.get('/auth/callback', async (req, res) => {
 
     if (response.ok) {
         const tokenData = await response.json();
-        res.cookie('accessToken', tokenData.access_token, { mageAxe: 45 * 60 * 1000 });
-        res.cookie('refreshToken', tokenData.refresh_token, { mageAxe: 30 * 24 * 60 * 60 * 1000 });
+        res.cookie('accessToken', tokenData.access_token, { maxAge: 45 * 60 * 1000 });
+        res.cookie('refreshToken', tokenData.refresh_token, { maxAge: 30 * 24 * 60 * 60 * 1000 });
         res.redirect('/');
     } else {
         res.redirect('/auth/login');

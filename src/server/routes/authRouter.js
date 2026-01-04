@@ -10,7 +10,7 @@ route.get('/auth/login', (req, res) => {
 route.get('/auth/callback', async (req, res) => {
     const code = req.query.code;
 
-    const authOptions = spotifyApi.getAuthOptions(code, `${req.protocol}://${req.headers.host}`);
+    const authOptions = spotifyApi.getAuthOptions(code, `${req.protocol}s://${req.headers.host}`);
 
     const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
 

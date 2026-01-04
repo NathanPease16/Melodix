@@ -7,7 +7,7 @@ route.get('/room', (req, res) => {
 });
 
 route.get('/roomCode', (req, res) => {
-    const room = rooms.generateRoom(8);
+    const room = rooms.generateRoom(4);
     res.send(room.code).end();
 });
 

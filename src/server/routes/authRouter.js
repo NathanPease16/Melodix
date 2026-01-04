@@ -3,7 +3,7 @@ const route = express.Router();
 const spotifyApi = require('../scripts/spotify-api');
 
 route.get('/auth/login', (req, res) => {
-    const queryParameters = spotifyApi.getAuthQueryParamaters(`${req.protocol}://${req.headers.host}`);
+    const queryParameters = spotifyApi.getAuthQueryParamaters(`${req.protocol}s://${req.headers.host}`);
     res.render('login', { href: `https://accounts.spotify.com/authorize/?${queryParameters.toString()}`});
 });
 

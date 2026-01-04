@@ -114,7 +114,7 @@ socket.on('finishQuestion', (roomPlayers) => {
 
     socket.emit('answerRevealed', correctChoice);
 
-    players.sort((a, b) => a.socre - b.score);
+    players.sort((a, b) => a.score - b.score);
 
     setTimeout(() => {
         standings.innerHTML = '';

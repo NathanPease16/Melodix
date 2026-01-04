@@ -100,9 +100,7 @@ socket.on('finishQuestion', (roomPlayers) => {
         }
 
         if (roomPlayer.choice === correctChoice) {
-            if (roomPlayer.order === 0) {
-                player.score += Math.trunc(1000 / (roomPlayer.order + 1));
-            }
+            player.score += Math.trunc(1000 / (roomPlayer.order + 1));
         }
     }
 

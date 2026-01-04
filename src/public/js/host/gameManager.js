@@ -66,8 +66,9 @@ async function generateQuestion(deviceId) {
 
     for (let i = 0; i < 4; i++) {
         buttons[i].textContent = answerChoices[i].name;
-        playSong(deviceId, song.uri);
     }
+
+    playSong(deviceId, song.uri);
 }
 
 function playSong(deviceId, uri) {    

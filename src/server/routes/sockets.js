@@ -55,8 +55,16 @@ function establishSockets(app) {
         });
 
         socket.on('submitQuestion', (choice) => {
-            rooms.updatePlayerChoice(socket.room.code, socket.room.name, choice);
             const room = rooms.getRoom(socket.room.code);
+            const order = 0;
+
+            for (const player of room.players) {
+                if (player.choice !== -1) {
+                    chosen++;
+                }
+            }
+            
+            rooms.updatePlayerChoice(socket.room.code, socket.room.name, choice, order);
             
             let allSelected = true;
             for (const player of room.players) {

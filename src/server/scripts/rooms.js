@@ -41,7 +41,7 @@ function addPlayer(roomCode, player) {
     room.players.push( {name: player, choice: -1 } );
 }
 
-function updatePlayerChoice(roomCode, player, choice) {
+function updatePlayerChoice(roomCode, player, choice, order) {
     const room = getRoom(roomCode);
 
     if (!room) {
@@ -51,6 +51,7 @@ function updatePlayerChoice(roomCode, player, choice) {
     for (const p of room.players) {
         if (p.name === player) {
             p.choice = choice;
+            p.order = order;
         }
     }
 }

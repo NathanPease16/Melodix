@@ -56,7 +56,7 @@ function establishSockets(app) {
 
         socket.on('submitQuestion', (choice) => {
             const room = rooms.getRoom(socket.room.code);
-            const order = 0;
+            let order = 0;
 
             for (const player of room.players) {
                 if (player.choice !== -1) {

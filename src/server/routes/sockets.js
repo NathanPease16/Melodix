@@ -60,7 +60,7 @@ function establishSockets(app) {
 
             for (const player of room.players) {
                 if (player.choice !== -1) {
-                    chosen++;
+                    order++;
                 }
             }
             
